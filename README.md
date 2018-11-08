@@ -38,6 +38,7 @@ To be more specific, the geometric distribution is the probability for which tri
 
 ```python
 #Your answer here
+# 0.25
 ```
 
 **C)** What's the probability that the first success occurs on the 3rd trial? The 5th?
@@ -45,6 +46,8 @@ To be more specific, the geometric distribution is the probability for which tri
 
 ```python
 #Your answer here
+# 0.125
+# 1/32
 ```
 
 ## 2. Geometric Function
@@ -52,11 +55,21 @@ Now write a probability distribution function for a random variable y. The funct
 
 
 ```python
-def geometric_dist(y,p):
-    """y is a discrete random variable. It should be an integer that is greater then zero.
-    p is the probability of a success for the Bernoulli experiment to be conducted.
-    This function should return the probability that the first successful Bernoulli experiment will occur on the yth trial."""
-    prob = #The probability that the first successful bernoulli experiment occurs on the yth trial.
+def geometric_dist(y, p):
+    """
+    Input
+    y: (int) is a discrete random variable. It should be an integer that is greater then zero.
+    p: (float) is the probability of a success for the Bernoulli experiment to be conducted.
+    
+    Return
+    prob: float
+    This function should return the probability that the first successful 
+    Bernoulli experiment will occur on the yth trial.
+    """
+    probability_failures_all_previous = (1-p)**(y-1)
+    probability_success_this_trial = p
+    overall_prob = probability_failures_all_previous * probability_success_this_trial
+    prob = overall_prob #The probability that the first successful bernoulli experiment occurs on the yth trial.
     return prob
 ```
 
@@ -66,8 +79,16 @@ Assume that the probability of a product working is 95%. Before shipping the pro
 
 ```python
 #Code and answer here
-prob = 
+prob = geometric_dist(10, 0.95)
+prob
 ```
+
+
+
+
+    1.8554687500000146e-12
+
+
 
 ## 4. Product Failures take 2
 In many cases, a manufacturer might only test a sample of the products for defaults. Assuming 95% of the products do indeed work, what is the probability that in testing 20 units, that none will be defective?
@@ -75,8 +96,16 @@ In many cases, a manufacturer might only test a sample of the products for defau
 
 ```python
 #Code and answer here
-prob = 
+prob = 0.95**20
+prob
 ```
+
+
+
+
+    0.3584859224085419
+
+
 
 ## 5. Consumer Profiling
 A previous sample showed that 70% of U.S. shoppers prefer to buy groceries in store as compared to online.  
@@ -85,8 +114,16 @@ Calculate the probability that the 6th person interviewed is the first to prefer
 
 ```python
 #Code and answer here
-prob = 
+prob = geometric_dist(6, 0.70)
+prob
 ```
+
+
+
+
+    0.0017010000000000011
+
+
 
 ## 6. Consumer Profiling 2
 What is the probability that at least 6 people have to be interviewed before finding someone who prefers to buy groceries online? (Assuming the statistic is true.)
@@ -94,8 +131,16 @@ What is the probability that at least 6 people have to be interviewed before fin
 
 ```python
 #Code and answer here
-prob = 
+prob = 0.70**5
+prob
 ```
+
+
+
+
+    0.16806999999999994
+
+
 
 ## Summary
 
